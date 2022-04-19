@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="#" method="post" onsubmit="return false">
+    <form action="#" method="post" onsubmit="return false" id="form_crear">
         <input type="text" name="nombre" id="" placeholder="Nombre">
         <input type="text" name="apellido" id="" placeholder="Apellido">
         <input type="number" name="cedula" id="cedula" placeholder="Cedula">
@@ -17,7 +17,10 @@
         <input type="password" name="pass" id="" placeholder="Contraseña">
         <input type="password" name="confirm_pass" id="" placeholder="Confirmar Contraseña">
         <button type="submit" id="enviar_info">Enviar</button>
+        <button type="submit" id="cancelar_info">Cancelar</button>
     </form>
+
+    <button id="crear_est">Agregar Estudiante</button>
 
     <table border>
         <thead>
@@ -32,9 +35,9 @@
                 <td>salomon@uninorte.edu.co</td>
                 <td>Mendoza</td>
                 <td>
-                    <button>Detalles</button>
-                    <button>Modificar</button>
-                    <button>Eliminar</button>
+                    <button class="detalles">Detalles</button>
+                    <button class="modificar">Modificar</button>
+                    <button class="eliminar">Eliminar</button>
                 </td>
             </tr>
             <tr>
@@ -42,9 +45,9 @@
                 <td>salomon@uninorte.edu.co</td>
                 <td>Mendoza</td>
                 <td>
-                    <button>Detalles</button>
-                    <button>Modificar</button>
-                    <button>Eliminar</button>
+                    <button class="detalles">Detalles</button>
+                    <button class="modificar">Modificar</button>
+                    <button class="eliminar">Eliminar</button>
                 </td>
             </tr>
             <tr>
@@ -52,9 +55,9 @@
                 <td>salomon@uninorte.edu.co</td>
                 <td>Mendoza</td>
                 <td>
-                    <button>Detalles</button>
-                    <button>Modificar</button>
-                    <button>Eliminar</button>
+                    <button class="detalles">Detalles</button>
+                    <button class="modificar">Modificar</button>
+                    <button class="eliminar">Eliminar</button>
                 </td>
             </tr>
         </tbody>

@@ -1,12 +1,35 @@
 
 let btn_enviar = document.getElementById('enviar_info')
 
+let form_crear = document.getElementById('form_crear')
+
+form_crear.style.display = "none"
+
+let btn_crear = document.getElementById('crear_est')
+
+btn_crear.addEventListener('click', () => {
+    form_crear.style.display = "block"
+    btn_crear.style.display = "none"
+})
+
+let cancelar_info = document.getElementById('cancelar_info')
+
+cancelar_info.addEventListener('click', () => {
+    form_crear.style.display = "none"
+    btn_crear.style.display = "block"
+
+    recorrerInputs(element => {
+        element.value = ''
+    })
+
+    //console.log(vector_inputs);
+})
+
 btn_enviar.addEventListener('click', () => {
-    let vector_inputs = document.querySelectorAll('input')
 
     let estudiante = {}
 
-    vector_inputs.forEach(input => {
+    recorrerInputs(input => {
         let value_input = input.value
 
         estudiante = {
@@ -17,7 +40,7 @@ btn_enviar.addEventListener('click', () => {
         if (value_input.length == 0) {
             alert(`el campo ${input.getAttribute('placeholder')} se encuentra vacío`)
         }
-    });
+    })
 
     estudiante = {
         id: uuidv4(),
@@ -30,9 +53,9 @@ btn_enviar.addEventListener('click', () => {
             <td>${estudiante.correo}</td>
             <td>${estudiante.cedula}</td>
             <td>
-                <button>Detalles</button>
-                <button>Modificar</button>
-                <button>Eliminar</button>
+                <button class="detalles">Detalles</button>
+                <button class="modificar">Modificar</button>
+                <button class="eliminar">Eliminar</button>
             </td>
         </tr>
     `
@@ -43,9 +66,8 @@ btn_enviar.addEventListener('click', () => {
 
     tbody.innerHTML = tbody.innerHTML + template_registro
 
-    console.log(tbody.innerHTML);
-    console.log();
-
+    
+    cancelar_info.click()
 })
 
 let input_cedula = document.getElementById('cedula')
@@ -57,6 +79,23 @@ input_cedula.addEventListener('keypress', (e) => {
         input_cedula.value = input_cedula.value + e.key
     }
 })
+
+function recorrerInputs(tarea) {
+    let vector_inputs = document.querySelectorAll('input')
+
+    vector_inputs.forEach(input => {
+        tarea(input)
+    });
+}
+
+
+let btns_eliminar = document.querySelectorAll('.eliminar')
+
+btns_eliminar.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        btn.parentElement.parentElement.remove()
+    })
+});
 
 
 function uuidv4() {
