@@ -98,6 +98,7 @@ function insertar_fila(estudiante) {
 
     tbody.innerHTML = tbody.innerHTML + template_registro
 
+    eliminar_registro()
 }
 
 let input_cedula = document.getElementById('cedula')
@@ -119,14 +120,17 @@ function recorrerInputs(tarea) {
 }
 
 
-let btns_eliminar = document.querySelectorAll('.eliminar')
+function eliminar_registro() {
+    let btns_eliminar = document.querySelectorAll('.eliminar')
 
-btns_eliminar.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        btn.parentElement.parentElement.remove()
-    })
-});
+    btns_eliminar.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            btn.parentElement.parentElement.remove()
+        })
+    });
+}
 
+eliminar_registro()
 
 function uuidv4() {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
