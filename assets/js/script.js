@@ -1,3 +1,15 @@
+let estudiantes = window.localStorage.getItem('estudiantes')
+
+if (estudiantes != null) {
+    estudiantes = JSON.parse(estudiantes)
+
+    estudiantes.forEach(estudiante => {
+
+        insertar_fila(estudiante)
+    });
+}
+
+
 
 let btn_enviar = document.getElementById('enviar_info')
 
@@ -47,11 +59,31 @@ btn_enviar.addEventListener('click', () => {
         ...estudiante
     }
 
+    let estudiantes = window.localStorage.getItem('estudiantes')
+
+    if (estudiantes == null) {
+        window.localStorage.setItem('estudiantes', JSON.stringify([estudiante]))
+    } else {
+        estudiantes = JSON.parse(estudiantes)
+
+        estudiantes.push(estudiante)
+
+        window.localStorage.setItem('estudiantes', JSON.stringify(estudiantes))
+    }
+
+    
+    insertar_fila(estudiante)
+
+    
+    cancelar_info.click()
+})
+
+function insertar_fila(estudiante) {
     let template_registro = `
         <tr>
             <td>${estudiante.id}</td>
             <td>${estudiante.correo}</td>
-            <td>${estudiante.cedula}</td>
+            <td>${estudiante.apellido}</td>
             <td>
                 <button class="detalles">Detalles</button>
                 <button class="modificar">Modificar</button>
@@ -66,9 +98,7 @@ btn_enviar.addEventListener('click', () => {
 
     tbody.innerHTML = tbody.innerHTML + template_registro
 
-    
-    cancelar_info.click()
-})
+}
 
 let input_cedula = document.getElementById('cedula')
 
