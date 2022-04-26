@@ -125,6 +125,25 @@ function eliminar_registro() {
 
     btns_eliminar.forEach(btn => {
         btn.addEventListener('click', (e) => {
+            let id_estudiante = btn.parentElement.parentElement.firstElementChild.textContent
+            
+            let estudiantes = window.localStorage.getItem('estudiantes')
+
+            if (estudiantes != null) {
+                console.log('mirraaa: ',estudiantes);
+                estudiantes = JSON.parse(estudiantes)
+
+                let nuevo_vector = estudiantes.filter( estudiante => estudiante.id != id_estudiante )
+
+                if (nuevo_vector.length == 0) {
+                    window.localStorage.removeItem('estudiantes')
+                } else {
+                    window.localStorage.setItem('estudiantes', JSON.stringify(nuevo_vector))
+                }
+
+                
+            }
+
             btn.parentElement.parentElement.remove()
         })
     });
